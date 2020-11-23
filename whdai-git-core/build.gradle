@@ -1,5 +1,7 @@
 plugins {
     id 'java-library'
+    id 'maven-publish'
+    id 'signing'
 }
 
 group 'cn.daiwenhao'
@@ -8,4 +10,63 @@ version '1.0.0'
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     api 'cn.daiwenhao:whdai-tools:1.0.1'
+}
+
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+javadoc {
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+    }
+}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            pom {
+                name = "whdai-git-core"
+                description = "whdai-git-core"
+                url = "https://github.com/dwhmofly/whdai-git-server.git"
+                licenses {
+                    license {
+                        name = "BSD-3-Clause License"
+                        url = "https://github.com/dwhmofly/whdai-git-server/blob/master/LICENSE"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "whdai"
+                        name = "代文浩"
+                        email = "dwh@daiwenhao.cn"
+                    }
+                }
+                scm {
+                    connection = "scm:git:https://github.com/dwhmofly/whdai-git-server.git"
+                    developerConnection = "scm:git:https://github.com/dwhmofly/whdai-git-server.git"
+                    url = "https://github.com/dwhmofly/whdai-git-server.git"
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                username System.getenv("PublishUser")
+                password System.getenv("PublishPass")
+            }
+        }
+
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
 }
