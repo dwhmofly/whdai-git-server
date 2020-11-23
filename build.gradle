@@ -1,0 +1,36 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+group 'cn.daiwenhao'
+version '1.0.0'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.3.4.RELEASE")
+    }
+}
+
+subprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+
+    dependencyManagement {
+        imports {
+            mavenBom SpringBootPlugin.BOM_COORDINATES
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    configurations {
+        provided
+        all {
+            resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+        }
+    }
+}

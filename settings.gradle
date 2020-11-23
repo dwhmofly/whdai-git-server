@@ -1,0 +1,4 @@
+rootProject.name = 'whdai-git-server'
+include 'whdai-git-core'
+include 'whdai-git-api'
+
