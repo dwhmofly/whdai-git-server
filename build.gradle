@@ -1,14 +1,11 @@
-import org.springframework.boot.gradle.plugin.SpringBootPlugin
-
-group 'cn.daiwenhao'
-version '1.0.0'
 
 buildscript {
     repositories {
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public" }
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.3.4.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.7.1")
     }
 }
 
@@ -16,11 +13,20 @@ subprojects {
 
     apply plugin: 'java'
     apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java-library'
+
+    group 'cn.daiwenhao'
+    version '1.0.2'
 
     dependencyManagement {
         imports {
-            mavenBom SpringBootPlugin.BOM_COORDINATES
+            mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
         }
+    }
+
+    repositories {
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public" }
+        mavenCentral()
     }
 
     repositories {

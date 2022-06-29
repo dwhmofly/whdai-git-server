@@ -2,9 +2,6 @@ plugins {
     id 'org.springframework.boot'
 }
 
-group 'cn.daiwenhao'
-version '1.0.0'
-
 dependencies {
 
     implementation project(':whdai-git-core')

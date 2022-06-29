@@ -1,17 +1,12 @@
 plugins {
-    id 'java-library'
     id 'maven-publish'
     id 'signing'
 }
-
-group 'cn.daiwenhao'
-version '1.0.0'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     api 'cn.daiwenhao:whdai-tools:1.0.1'
 }
-
 
 java {
     withJavadocJar()
@@ -63,7 +58,6 @@ publishing {
                 password System.getenv("PublishPass")
             }
         }
-
     }
 }
 
