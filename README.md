@@ -1,5 +1,5 @@
 # whdai-git-server  
-[GITHUB](https://github.com/geekidea/spring-boot-plus)  
+[GITHUB](https://github.com/dwhmofly/whdai-git-server)  
 a git http server based on java  
 
 ## whdai-git-api  
@@ -18,4 +18,4 @@ a git http server based on java ([download](https://github.com/dwhmofly/whdai-gi
 </dependency>
 ```  
 #### gradle  
-    implementation 'cn.daiwenhao:whdai-git-core:1.0.1'
+    implementation 'cn.daiwenhao:whdai-git-core:1.0.0'
